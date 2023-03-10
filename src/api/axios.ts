@@ -3,6 +3,7 @@ import queryString from 'query-string'
 
 export const baseURL = process.env.VUE_APP_API
 export const domain = process.env.VUE_APP_SUB_DOMAIN
+export const platForm = process.env.VUE_APP_SUB_PLAT_FORM
 const axiosClient = axios.create({
   baseURL: baseURL,
   headers: {
@@ -17,10 +18,10 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(async (config) => {
   return config
 })
-axios.interceptors.response.use(
+axiosClient.interceptors.response.use(
   (response) => {
     if (response && response.data) {
-      return response.data
+      return response
     }
     return response
   },

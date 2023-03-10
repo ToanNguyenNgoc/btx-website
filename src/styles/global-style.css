@@ -1,3 +1,15 @@
+:root {
+    --primary: #FFCCBC;
+    --orange: #F4511E;
+    --green-dark: #43A047;
+    --green-dark-2: #66BB6A;
+    --green-light: #81C784;
+    --yellow-dark: #F9A825;
+    --yellow-light: #FFEE58;
+    --grey-light: #E0E0E0;
+    --grey-dark-4:#212121;
+}
+
 * {
     font-family: 'Quicksand';
 }
@@ -26,7 +38,23 @@ ol,
 ul {
     list-style: none;
 }
-a{
+
+a {
     color: black;
     text-decoration: none;
+}
+
+.app-input {
+    border: solid 1px var(--grey-light);
+    padding: 8px 12px;
+    outline: none;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    color: var(--grey-dark-4);
+    border-radius: 6px;
+}
+
+.v-btn {
+    text-transform: capitalize;
 }

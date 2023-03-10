@@ -14,6 +14,11 @@ export interface Login {
   email: string | number,
   password: string
 }
+export interface Register {
+  telephone: number | string,
+  code?: number | string,
+  new_password?: number | string
+}
 export interface UpdateProfile {
   fullname?: string,
   media_id?: string | number,

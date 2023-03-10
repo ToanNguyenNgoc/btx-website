@@ -1,10 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomePage from '../pages/home/Home.vue'
 import SignPage from '../pages/sign/Sign.vue'
+import SignUpPage from '../pages/sign-up/SignUpPage.vue'
 import ProfilePage from '../pages/profile/ProfilePage.vue'
 import OrderPage from '../pages/profile/OrderPage.vue'
 import ProfileDetailPage from '../pages/profile/ProfileDetailPage.vue'
 import AppointmentPage from '../pages/profile/AppointmentPage.vue'
+import DetailPage from '../pages/detail/DetailPage.vue'
+import DetailPageProduct from '../pages/detail/DetailPageProduct.vue'
 import store from '@/store'
 import { computed } from 'vue'
 import api from '@/api/apiClient'
@@ -16,9 +19,24 @@ const routes: Array<RouteRecordRaw> = [
     component: HomePage
   },
   {
+    path: '/service/:id',
+    name: 'ser-detail-route',
+    component: DetailPage,
+  },
+  {
+    path: '/product/:id',
+    name: 'pro-detail-route',
+    component: DetailPageProduct,
+  },
+  {
     path: '/sign-in',
     name: 'sign-in-route',
     component: SignPage
+  },
+  {
+    path: '/sign-up',
+    name: 'sign-up-route',
+    component: SignUpPage
   },
   {
     path: '/profile',

@@ -25,9 +25,7 @@ export default defineComponent({
       telephone: user.value?.telephone
     })
     const onChangeFile = async (e: Event) => {
-      // eslint-disable-next-line camelcase
       const { media_ids } = await postMedia(e)
-      // eslint-disable-next-line camelcase
       const response = await api.putProfile({ media_id: media_ids[0] })
       if (response) {
         store.dispatch('PUT_USER', { ...user.value, ...response })

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import api from '@/api/apiClient'
 import { User, UserModule } from '@/interfaces'
+import { Commit } from 'vuex'
 
 const userModule = {
   state: {
@@ -9,21 +10,28 @@ const userModule = {
     load: false
   },
   mutations: {
-    async GET_INFO (state: UserModule) {
+    async GET_INFO(state: UserModule) {
       const response = await api.profile()
       state.user = response
     },
-    PUT_USER (state: UserModule, payload: User) {
+    PUT_USER(state: UserModule, payload: User) {
       state.user = payload
+    },
+    LOGOUT(state: UserModule) {
+      localStorage.removeItem('app-tk')
+      state.user = null
     }
   },
   getters: {},
   actions: {
-    GET_INFO (context: any) {
-      context.commit('GET_INFO')
+    GET_INFO({ commit }: { commit: Commit }) {
+      commit('GET_INFO')
     },
-    PUT_USER (context: any, payload:User) {
-      context.commit('PUT_USER', payload)
+    PUT_USER({ commit }: { commit: Commit }, payload: User) {
+      commit('PUT_USER', payload)
+    },
+    LOGOUT({ commit }: { commit: Commit }) {
+      commit('LOGOUT')
     }
   }
 }

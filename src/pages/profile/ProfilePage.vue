@@ -11,6 +11,9 @@
         <li>
           <router-link active-class="link_active" :to="{ name: 'appointments-route' }">Appointments page</router-link>
         </li>
+        <li @click="onLogout">
+          Đăng xuất
+        </li>
       </ul>
     </div>
     <div>
@@ -21,11 +24,17 @@
 <script lang="ts">
 import store from '@/store'
 import { computed, defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'ProfilePage',
-  setup () {
+  setup() {
+    const router = useRouter()
     const org = computed(() => store.state.orgModule.org)
-    return { org }
+    const onLogout = () => {
+      store.dispatch('LOGOUT')
+      router.push({ name: 'home' })
+    }
+    return { org, onLogout }
   }
 })
 </script>

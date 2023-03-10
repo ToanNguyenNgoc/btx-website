@@ -8,4 +8,14 @@ const header = (contentType?: 'application/json' | 'multipart/form-data') => {
   }
 }
 
-export { header }
+const headerParam = <T,>(params: T) => {
+  const token = localStorage.getItem('app-tk')
+  return {
+    params,
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  }
+}
+
+export { header, headerParam }
