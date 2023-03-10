@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Cart } from './cart'
 import { Organization } from './organizations'
 import { Product } from './product'
 import { Service } from './service'
@@ -17,14 +18,20 @@ export interface HomeModule {
     data: Service[],
     load: boolean
   },
-  products:{
-    data:Product[],
-    load:boolean
+  products: {
+    data: Product[],
+    load: boolean
   }
+}
+export interface CartModule {
+  carts: Cart[],
+  totalItem: number,
+  totalAmount: number
 }
 
 export interface StoreState {
   userModule: UserModule,
   orgModule: OrgModule,
-  homeModule: HomeModule
+  homeModule: HomeModule,
+  cartModule: CartModule
 }

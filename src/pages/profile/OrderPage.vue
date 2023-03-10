@@ -1,11 +1,11 @@
 <template>
   <h1 v-if="isLoading">Loading...</h1>
   <ul>
-    <li v-for="(order, index) in orders" :key="index">
+    <li v-for="(order, index) in orders.data" :key="index">
       <p>{{ order.created_at }} - {{ order.amount }}</p>
     </li>
   </ul>
-  <v-btn :loading="isFetchingNextPage" @click="fetchNextPage">
+  <v-btn v-if="orders.data?.length < orders.total" :loading="isFetchingNextPage" @click="fetchNextPage">
     More
   </v-btn>
 </template>
@@ -26,7 +26,12 @@ export default defineComponent({
       refetchOnWindowFocus: false,
       getNextPageParam: (page: ResponseSuccess<any>) => page.current_page + 1
     })
-    const orders = computed(() => data.value?.pages.map((page: ResponseSuccess<any>) => page.data).flat())
+    const orders: any = computed(() => {
+      return {
+        data: data.value?.pages.map((page: ResponseSuccess<any>) => page.data).flat(),
+        total: data.value?.pages[0]?.total
+      }
+    })
     return { orders, isLoading, fetchNextPage, isFetchingNextPage }
   }
 })

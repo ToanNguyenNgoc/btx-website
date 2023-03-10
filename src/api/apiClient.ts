@@ -41,7 +41,11 @@ class ApiClient {
         append: 'is_favorite|rating|bought_count'
       })
     )
-      .then((res) => res.data.context)
+      .then((res) => ({
+        ...res.data.context,
+        price: parseInt(res.data.context.price),
+        special_price: parseInt(res.data.context.special_price)
+      }))
   }
   products = (): Promise<ResponseSuccess<Product[]>> => {
     return axiosClient.get(API_URL.products).then((res) => res.data.context)
@@ -53,7 +57,11 @@ class ApiClient {
         include: 'category | favorites'
       })
     )
-      .then((res) => res.data.context)
+      .then((res) => ({
+        ...res.data.context,
+        price: parseInt(res.data.context.retail_price),
+        special_price: parseInt(res.data.context.special_price)
+      }))
   }
 }
 

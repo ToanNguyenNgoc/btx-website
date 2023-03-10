@@ -7,7 +7,7 @@
     --yellow-dark: #F9A825;
     --yellow-light: #FFEE58;
     --grey-light: #E0E0E0;
-    --grey-dark-4:#212121;
+    --grey-dark-4: #212121;
 }
 
 * {
@@ -53,6 +53,10 @@ a {
     font-weight: 500;
     color: var(--grey-dark-4);
     border-radius: 6px;
+}
+
+.v-container {
+    padding: 6px 12px;
 }
 
 .v-btn {

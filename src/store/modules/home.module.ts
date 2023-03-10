@@ -32,7 +32,7 @@ const homeModule = {
       }
     }
   },
-  setters: {},
+  getters: {},
   actions: {
     GET_SERVICES({ commit }: { commit: Commit }) {
       commit('GET_SERVICES')

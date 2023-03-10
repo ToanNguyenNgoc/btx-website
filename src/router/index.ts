@@ -8,6 +8,7 @@ import ProfileDetailPage from '../pages/profile/ProfileDetailPage.vue'
 import AppointmentPage from '../pages/profile/AppointmentPage.vue'
 import DetailPage from '../pages/detail/DetailPage.vue'
 import DetailPageProduct from '../pages/detail/DetailPageProduct.vue'
+import CartPage from '../pages/cart/CartPage.vue'
 import store from '@/store'
 import { computed } from 'vue'
 import api from '@/api/apiClient'
@@ -37,6 +38,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/sign-up',
     name: 'sign-up-route',
     component: SignUpPage
+  },
+  {
+    path: '/cart',
+    name: 'cart-route',
+    component: CartPage
   },
   {
     path: '/profile',

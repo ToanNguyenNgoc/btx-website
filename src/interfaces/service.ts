@@ -23,7 +23,7 @@ export interface Service {
   service_group_id: number
   service_name: string
   service_order: boolean
-  special_price: number
+  special_price: number,
   status: boolean,
   favorites_count: number,
   video_url: any,

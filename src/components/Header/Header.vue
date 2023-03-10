@@ -5,19 +5,23 @@
       <router-link :to="{ name: 'sign-in-route' }">Đăng nhập</router-link>
       <router-link :to="{ name: 'sign-up-route' }">Đăng ký</router-link>
     </div>
-    <div v-if="userModule.user">
-      <router-link :to="{ name: 'profile-detail-route' }">{{ userModule.user?.fullname }}</router-link>
-    </div>
+    <router-link v-if="userModule.user" :to="{ name: 'profile-detail-route' }">
+      {{ userModule.user?.fullname }}
+    </router-link>
+    <router-link :to="{ name: 'cart-route' }">Giỏ hàng({{ totalItem }})</router-link>
   </v-container>
 </template>
 
 <script lang="ts">
 
 import { defineComponent } from 'vue'
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 export default defineComponent({
   name: 'AppHeader',
-  computed: mapState(['userModule']),
+  computed: {
+    ...mapState(['userModule']),
+    ...mapGetters(['totalItem'])
+  },
   setup() {
     return {}
   }
