@@ -8,6 +8,25 @@
     --yellow-light: #FFEE58;
     --grey-light: #E0E0E0;
     --grey-dark-4: #212121;
+    --deep-orange: #FF6E40;
+    --trans: all .3s;
+    --bg-white: #fff;
+    --bg-gray-dark: #e5e5e5;
+    --bg-gray: #f5f5f7;
+    --red-cl: #ee6955;
+    --text-black: #3b3a40;
+    --text-hover: #a2a1ab;
+    --text-op: #cac4e5;
+    --text-orange: #ff721f;
+    --bg-color: #eeedf2;
+    --pink: #fff3f1;
+    --pink-2: #fbf3f7;
+    --pink-momo: #d82d8b;
+    --purple-text: #3a2c93;
+    --bg-purple: #7266ba;
+    --box-shadow: 0px 0px 16px -1px rgba(0, 0, 0, .1);
+    --trans: all 0.3s;
+    --red-2: #de221f;
 }
 
 * {
@@ -45,20 +64,33 @@ a {
 }
 
 .app-input {
-    border: solid 1px var(--grey-light);
-    padding: 8px 12px;
+    border: solid 1px #F5F8FA;
+    padding: 12px 20px;
     outline: none;
     font-size: 15px;
     line-height: 20px;
     font-weight: 500;
     color: var(--grey-dark-4);
+    background-color: #F5F8FA;
     border-radius: 6px;
+    width: 100%;
 }
 
 .v-container {
-    padding: 6px 12px;
+    padding: 12px;
+    margin: 12px auto;
 }
 
 .v-btn {
     text-transform: capitalize;
+}
+
+.v-btn:hover>.v-btn__overlay {
+    opacity: 0.7 !important;
+    background-color: transparent !important;
+}
+
+.v-slide-group__prev,
+.v-slide-group__next {
+    display: none !important;
 }

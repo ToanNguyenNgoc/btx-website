@@ -9,47 +9,75 @@ import AppointmentPage from '../pages/profile/AppointmentPage.vue'
 import DetailPage from '../pages/detail/DetailPage.vue'
 import DetailPageProduct from '../pages/detail/DetailPageProduct.vue'
 import CartPage from '../pages/cart/CartPage.vue'
+import GalleryPage from '../pages/gallery/GalleryPage.vue'
 import store from '@/store'
 import { computed } from 'vue'
 import api from '@/api/apiClient'
+import MainLayoutVue from '@/components/Layouts/MainLayout.vue'
+import AuthLayoutVue from '@/components/Layouts/AuthLayout.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomePage
+    component: HomePage,
+    meta: {
+      Layout: MainLayoutVue
+    }
   },
   {
     path: '/service/:id',
     name: 'ser-detail-route',
     component: DetailPage,
+    meta: {
+      Layout: MainLayoutVue
+    }
   },
   {
     path: '/product/:id',
     name: 'pro-detail-route',
     component: DetailPageProduct,
+    meta: {
+      Layout: MainLayoutVue
+    }
   },
   {
     path: '/sign-in',
     name: 'sign-in-route',
-    component: SignPage
+    component: SignPage,
+    meta: {
+      Layout: AuthLayoutVue
+    }
   },
   {
     path: '/sign-up',
     name: 'sign-up-route',
-    component: SignUpPage
+    component: SignUpPage,
+    meta: { Layout: AuthLayoutVue }
   },
   {
     path: '/cart',
     name: 'cart-route',
-    component: CartPage
+    component: CartPage,
+    meta: {
+      Layout: MainLayoutVue
+    }
+  },
+  {
+    path: '/galleries',
+    name: 'gallery-route',
+    component: GalleryPage,
+    meta: {
+      Layout: MainLayoutVue
+    }
   },
   {
     path: '/profile',
     name: 'profile-route',
     component: ProfilePage,
     meta: {
-      isAuth: true
+      isAuth: true,
+      Layout: MainLayoutVue
     },
     children: [
       { path: '', name: 'profile-detail-route', component: ProfileDetailPage },

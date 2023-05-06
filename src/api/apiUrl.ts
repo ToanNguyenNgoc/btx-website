@@ -11,6 +11,7 @@ const API_URL = {
   service: (id: number | string) => `/v1/organizations/${domain}/services/${id}`,
   products: `/v1/organizations/${domain}/products`,
   product: (id: number | string) => `/v1/organizations/${domain}/products/${id}`,
+  galleries: `/v1/organizations/${domain}/moba_galleries`
 }
 
 export default API_URL

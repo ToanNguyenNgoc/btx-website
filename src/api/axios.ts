@@ -16,6 +16,8 @@ const axiosClient = axios.create({
   }
 })
 axiosClient.interceptors.request.use(async (config) => {
+  const token = localStorage.getItem('app-tk')
+  config.headers.Authorization = `Bearer ${token}`
   return config
 })
 axiosClient.interceptors.response.use(

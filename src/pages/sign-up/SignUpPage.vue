@@ -1,48 +1,55 @@
 <template>
-  <v-container>
-    <div>
-      <div v-if="step === 1">
-        <h1>Telephone</h1>
-        <form @submit.prevent="handleSubmit">
-          <input class="app-input" v-model="telephone" placeholder="Telephone..." />
-          <v-btn :loading="load" :disabled="load" color="var(--orange)" type="submit" variant="tonal">Lấy mã otp</v-btn>
-        </form>
+  <div>
+    <app-form v-if="step === 1" @submit="onSubmit" :validation-schema="schema" v-slot="{ errors }">
+      <div class="sign-form-row">
+        <app-field class="app-input" name="telephone" placeholder="Số điện thoại" />
+        <p class="form-row-error">{{ errors.telephone }}</p>
       </div>
-      <register-form @click-back="onBackFromRegister" v-if="step === 2" :telephone="telephone" />
-    </div>
-  </v-container>
+      <div class="sign-form-bot">
+        <v-btn :loading="isLoading" class="sign-form-bot_btn" type="submit" variant="tonal" color="var(--orange)">
+          Lấy mã xác thực
+        </v-btn>
+      </div>
+    </app-form>
+    <register-form v-if="step === 2" @click-back="onBackFromRegister" :telephone="telephone" />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue"
 import RegisterForm from "./RegisterForm.vue"
-import AppInput from "@/components/Layouts/AppInput.vue"
 import api from "@/api/apiClient"
+import { Form, Field } from 'vee-validate'
+import * as Yup from 'yup'
+import { validate } from "@/utils"
+import { useMutation } from "@tanstack/vue-query"
+import { Register } from "@/interfaces"
 
 export default defineComponent({
   name: "SignUpPage",
   components: {
+    AppForm: Form,
+    AppField: Field,
     RegisterForm: RegisterForm,
-    AppInput: AppInput,
   },
   setup() {
     const step = ref(1)
-    const telephone = ref()
-    const load = ref(false)
-    const handleSubmit = async () => {
-      load.value = true
-      try {
-        const response = await api.register({ telephone: telephone.value })
-        if (response) {
-          step.value = 2
-          load.value = false
-        }
-      } catch (error) {
-        load.value = false
-      }
+    const telephone = ref<string>('')
+    const schema = Yup.object().shape({
+      telephone: Yup.string()
+        .required('Vui lòng nhập số điện thoại')
+        .matches(validate.phone, { message: 'Số điện thoại không đúng định dạng' })
+    })
+    const { mutate, isLoading } = useMutation({
+      mutationFn: (body: Register) => api.register(body),
+      onSuccess: () => step.value = 2
+    })
+    const onSubmit = (data: any) => {
+      mutate(data)
+      telephone.value = data.telephone
     }
     const onBackFromRegister = () => step.value = 1
-    return { step, load, telephone, handleSubmit, onBackFromRegister }
+    return { step, schema, onBackFromRegister, onSubmit, isLoading, telephone }
   }
 })
 </script>

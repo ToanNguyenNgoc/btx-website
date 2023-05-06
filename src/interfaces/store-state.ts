@@ -11,7 +11,11 @@ export interface UserModule {
 }
 export interface OrgModule {
   org: Organization,
-  load: boolean
+  load: boolean,
+  galleries: {
+    data: any,
+    load: boolean
+  }
 }
 export interface HomeModule {
   services: {

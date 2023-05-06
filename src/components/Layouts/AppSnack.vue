@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar variant="tonal" :color="color" :value="open">
+  <v-snackbar location="top right" variant='flat' :color="color" :model-value="open" >
     <div  class="container" >
       <div>
         <h3>Thông báo</h3>
