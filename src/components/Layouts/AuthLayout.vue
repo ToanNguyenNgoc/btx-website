@@ -86,7 +86,8 @@ export default defineComponent({
 
 .auth-body {
   width: 100%;
-  height: calc(100dvh - 68px);
+  height: calc(100svh - 68px);
+  height: -webkit-fill-available;
   display: flex;
   align-content: center;
   justify-content: center;
